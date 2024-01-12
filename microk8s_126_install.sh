@@ -133,7 +133,7 @@ kubectl label node $KUBENODE openebs.io/rack=rack1
 
 
 #some microk8s ninja editing
-wget https://openebs.github.io/charts/zfs-operator.yaml
+wget https://raw.githubusercontent.com/marcnl/linux/main/k8s/zfs-operator.yaml
 cat zfs-operator.yaml | sed  's#/var/lib/kubelet/#/var/snap/microk8s/common/var/lib/kubelet/#g' > zfs-operator-microk8s.yaml
 kubectl apply -f zfs-operator-microk8s.yaml
 
