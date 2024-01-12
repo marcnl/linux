@@ -17,7 +17,7 @@
 #
 # Run the command below on a fresh Ubuntu 22.04 install. The '| tee ./installer.log' is optional, only use it if you want to save screen output to a log file
 #
-# wget https://raw.githubusercontent.com/marcnl/linux/k8s/main/microk8s_126_install.sh && chmod +x ./microk8s_126_install.sh && ./microk8s_126_install.sh 1.26 192.168.1.151 192.168.1.156 2>&1 | tee ./installer.log
+# wget https://raw.githubusercontent.com/marcnl/linux/main/k8s/microk8s_126_install.sh && chmod +x ./microk8s_126_install.sh && ./microk8s_126_install.sh 1.26 192.168.1.151 192.168.1.156 2>&1 | tee ./installer.log
 
 
 
