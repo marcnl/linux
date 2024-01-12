@@ -12,12 +12,12 @@ bucketname='k10-2'
 
 # vsphere settings
 vsphere_user='Administrator@vsphere.local'
-vsphere_password='Veeam123!'
+vsphere_password='P@ssW0rd'
 vsphereserverAddress='192.168.1.124'
 
 # vbr settings
 vbr_user='marc@backup.lab'
-vbr_password='Veeam123!'
+vbr_password='P@ssW0rd'
 vbrserverAddress='192.168.1.127'
 vbrskipSSLVerify='true'
 repoName='Scale-out Backup Repository - DC1'
