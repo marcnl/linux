@@ -1,0 +1,21 @@
+apiVersion: config.kio.kasten.io/v1alpha1
+kind: Profile
+metadata:
+  name: vbr11
+  namespace: kasten-io
+spec:
+  type: Location
+  locationSpec:
+    credential:
+      secretType: VBRKey
+      secret:
+        apiVersion: v1
+        kind: Secret
+        name: k10-vbr-secret
+        namespace: kasten-io
+    type: VBR
+    vbr:
+      repoName: "Scale-out Backup Repository - DC1"
+      serverAddress: 192.168.1.155
+      serverPort: 9419
+      skipSSLVerify: true

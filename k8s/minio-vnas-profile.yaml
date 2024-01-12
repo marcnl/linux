@@ -1,0 +1,23 @@
+apiVersion: config.kio.kasten.io/v1alpha1
+kind: Profile
+metadata:
+  name: minio-vnas
+  namespace: kasten-io
+spec:
+  type: Location
+  locationSpec:
+    credential:
+      secretType: AwsAccessKey
+      secret:
+        apiVersion: v1
+        kind: Secret
+        name: k10-minios3-secret
+        namespace: kasten-io
+    type: ObjectStore
+    objectStore:
+      name: minio-k8s-s3-bucket
+      objectStoreType: S3
+      endpoint: 'https://192.168.1.152:9000'
+      skipSSLVerify: true
+      name: k10-2
+      region: nl-home-lab-1

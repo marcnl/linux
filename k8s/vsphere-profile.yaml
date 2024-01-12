@@ -1,0 +1,19 @@
+apiVersion: config.kio.kasten.io/v1alpha1
+kind: Profile
+metadata:
+  name: vsphere
+  namespace: kasten-io
+spec:
+  type: Infra
+  infra:
+    type: VSphere
+    vsphere:
+      serverAddress: 192.168.1.151
+      taggingEnabled: true
+    credential:
+      secretType: VSphereKey
+      secret:
+        apiVersion: v1
+        kind: Secret
+        name: k10-vsphere-infra-secret
+        namespace: kasten-io

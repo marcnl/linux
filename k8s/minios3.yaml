@@ -1,0 +1,79 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: minios3
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: minios3
+  labels:
+    app: minios3
+  namespace: minios3
+spec:
+  ports:
+  - port: 80
+    targetPort: 80
+    name: minios3api
+  - port: 9001
+    targetPort: 9001
+    name: minios3console
+  type: LoadBalancer
+  selector:
+    app: minios3
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: minio-secret
+  namespace: minios3
+type: Opaque
+data:
+  minio-root-password: Cg==
+---
+apiVersion: apps/v1
+kind: StatefulSet
+metadata:
+  name: minios3
+  namespace: minios3
+spec:
+  serviceName: "minios3"
+  replicas: 1
+  selector:
+    matchLabels:
+      app: minios3
+  template:
+    metadata:
+      labels:
+        app: minios3
+    spec:
+      containers:
+      - name: minios3
+        image: minio/minio
+        args: ["server","/data","--address",":80","--console-address",":9001"]
+        env:
+ #           - name: MINIO_ROOT_USER
+ #             value: admin
+ #           - name: MINIO_REGION_NAME
+ #             value: us-east-1
+ #           - name: MINIO_ROOT_PASSWORD
+ #             valueFrom:
+ #               secretKeyRef:
+ #                 key: minio-root-password
+ #                 name: minio-secret
+        ports:
+        - containerPort: 80
+          name: minios3api
+        - containerPort: 9001
+          name: minios3console
+        volumeMounts:
+        - name: data
+          mountPath: /data
+  volumeClaimTemplates:
+  - metadata:
+      name: data
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      resources:
+        requests:
+          storage: 10Gi
