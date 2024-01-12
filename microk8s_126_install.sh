@@ -17,7 +17,7 @@
 #
 # Run the command below on a fresh Ubuntu 22.04 install. The '| tee ./installer.log' is optional, only use it if you want to save screen output to a log file
 #
-# wget https://veeam.marcmolleman.nl/microk8s_126_install-v1.sh && chmod +x ./microk8s_126_install-v1.sh && ./microk8s_126_install-v1.sh 1.26 192.168.1.151 192.168.1.156 2>&1 | tee ./installer.log
+# wget https://raw.githubusercontent.com/marcnl/linux/main/microk8s_126_install.sh && chmod +x ./microk8s_126_install.sh && ./microk8s_126_install.sh 1.26 192.168.1.151 192.168.1.156 2>&1 | tee ./installer.log
 
 
 
@@ -444,13 +444,13 @@ kubectl patch svc adguard-home-dns-udp --namespace=adguard-home -p '{"spec": {"t
 
 
 echo;echo "Creating Backup Policies..."
-wget https://veeam.marcmolleman.nl/create_backup_policies.sh
+wget https://raw.githubusercontent.com/marcnl/linux/main/k8s/create_backup_policies.sh
 chmod +x ./create_backup_policies.sh
 ./create_backup_policies.sh
 echo
 
 echo;echo "Creating Backup Presets..."
-wget https://veeam.marcmolleman.nl/create_presets.sh
+wget https://raw.githubusercontent.com/marcnl/linux/main/k8s/create_presets.sh
 chmod +x ./create_presets.sh
 ./create_presets.sh
 echo
@@ -565,7 +565,7 @@ mv *.yaml ./yaml
 echo
 
 echo "Run the following command to download the create_profiles script to easily connect external MinIO storage, vCenter and VBR:";echo
-echo "wget https://veeam.marcmolleman.nl/create_profiles.sh && chmod +x ./create_profiles.sh";echo
+echo "wget https://raw.githubusercontent.com/marcnl/linux/main/k8s/create_profiles.sh && chmod +x ./create_profiles.sh";echo
 echo "Before running the script, edit script to fill in login and configuration details for MinIO, vCenter and VBR.";echo
 echo
 echo "Do you want to connect Kasten to VBR? Make sure to set the ServerURIScheme Registry Key for HTTP access"
@@ -584,7 +584,7 @@ exit
 ## RUN THIS ONCE (to automatically login to the K8S VM without using a password (adjust accordingly):
 ## ssh-keygen -t rsa && scp $home\.ssh\id_rsa.pub marc@k8s.veeam.lab:.ssh/authorized_keys
 
-## Add this to a .ps1 script (adjust URL/IP/user accordingly)
+## Small Powershell script for easy access (adjust URL/IP/user accordingly)
 # MicrosoftEdge.exe
 #start http://k10.veeam.lab/k10	
 #start https://minio-k8s.veeam.lab
